@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>11 Meses de Amor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Música (autoplay mutado, som liberado ao clicar) -->
+  <audio id="musica" autoplay loop muted>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="stars" id="stars"></div>
+  <div class="floating-hearts" id="hearts-container"></div>
+
+  <main class="container">
+    <header>
+      <h1>11 Meses de Amor</h1>
+      <p class="subtitle">Nossas noites sob as estrelas</p>
+      <span class="heart-icon">💜</span>
+    </header>
+
+    <section class="gallery-container">
+      <div class="photo-item">
+        <img src="foto1.jpg" alt="Foto 1">
+        <div class="photo-caption">Nosso início</div>
+      </div>
+      <div class="photo-item">
+        <img src="foto2.jpg" alt="Foto 2">
+        <div class="photo-caption">Um momento especial</div>
+      </div>
+      <div class="photo-item">
+        <img src="foto3.jpg" alt="Foto 3">
+        <div class="photo-caption">Mais uma noite juntos</div>
+      </div>
+    </section>
+
+    <section class="love-letter">
+      <h2 class="letter-title">Minha Querida</h2>
+      <div class="letter-content">
+        <p>Passar 11 meses com você até me da um friozinho na barriga amor mas é ótimo saber que até aqui tudo tem dado certo.</p>
+        <p>Você é a garota mais especial que eu conheço, a cada dia agradeço pelo nosso amor e quero que ele vá crescendo mais e mais.</p>
+        <p>Sei que não sou a namorada que você espera, não falo tanto as vezes, não saio tanto quanto você gosta mas prometo que to tentando ser melhor pra você.</p>
+        <p>Que nossa história continue sendo tão linda, delicada e a mais romântica de todas.</p>
+      </div>
+      <button class="love-btn" id="loveBtn">Nosso Amor</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Feito com amor por você 💙💜</p>
+    <p>&copy; 2025 - Nosso Universo</p>
+  </footer>
+
+  <script>
+    // Criar estrelas
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.width = `${Math.random() * 3 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+      starsContainer.appendChild(star);
+    }
+
+    // Botão de amor
+    const loveBtn = document.getElementById('loveBtn');
+    const audio = document.getElementById('musica');
+
+    loveBtn.addEventListener('click', () => {
+      audio.muted = false;
+      audio.play();
+      createHearts(10);
+    });
+
+    function createHearts(count = 10) {
+      const container = document.getElementById('hearts-container');
+      const colors = ['#e0aaff', '#4cc9f0', '#b5179e', '#7209b7'];
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.innerHTML = ['❤', '💜', '💙'][Math.floor(Math.random() * 3)];
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+          heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+          heart.style.fontSize = `${Math.random() * 2 + 1}rem`;
+          container.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }, i * 200);
+      }
+    }
+  </script>
+</body>
+</html>
